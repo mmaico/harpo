@@ -13,23 +13,34 @@
     '----------------'  '----------------'  '----------------'  '----------------'  '----------------'
     </print>
 
-    <velocity>
-        #foreach($value in $list)
-            $value
-        #end
-     ============================================================================
-     |  #set($keypairs = $test)                                                  |
-     |  ##Public Key: $keypairs.getPublicKey()                                    |
-     |  ##Private Key: $keypairs.getPrivateKey()                                  |
-     ============================================================================
-    </velocity>
-    <command-input variable="resultValue">Enter the secret to be kept:</command-input>
-    <velocity>
-        Showing the result: $resultValue
-##       #foreach($fragment in $client.splitToShare($resultValue))
-##            index:$fragment.index fragment: $gragment.value
-##       #end
-    </velocity>
+<velocity>
+   #set($keypairs = $client.createKeyPairs())
+    <br/>
+    ======================= Key pairs ============================
+    These are the keys that will be used to keep your secret. Keep them.
+    <br/>
+    Private Key: $keypairs.privateKey
+    Public Key: $keypairs.publicKey
+</velocity>
+<command-input variable="resultValue">Enter the secret to be kept:</command-input>
+<velocity>
+    #set($secretEncrypted = $client.encrypt($resultValue, $keypairs))
+    <br/>
+    ======================= Secret Encrypted ============================
+    <br/>
+    Showing the SECRET: $resultValue
+    SECRET Encrypted: $secretEncrypted
+    <br/>
+    ======================= Fragmented secret ============================
+    <br/>
+   #foreach($fragment in $client.split($secretEncrypted))
+    index:$fragment.index fragment: $fragment.value
+   #end
+    <br/>
+    ======================= Send the fragments ============================
+    <br/>
+    Send the fragmets to the Harpo P2P network...
+</velocity>
 </root>
 
 

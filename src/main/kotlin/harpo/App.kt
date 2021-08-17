@@ -1,6 +1,7 @@
 
 package harpo
 
+import harpo.client.Client
 import harpo.criptography.ecdh.ECDHCipher
 import harpo.infrastructure.template_engine.Console
 import javax.inject.Inject
@@ -47,7 +48,10 @@ class App @Inject constructor(val cipher: ECDHCipher) {
 //    println("Decrypted Text $deCipher")
 //}
 fun main() {
-    val context: MutableMap<String?, Any> = mutableMapOf("list" to listOf("1", "2"), "test" to "hello")
+
+
+    val context: MutableMap<String?, Any> = mutableMapOf("client" to Client())
 
     Console.execute(context, "/templates/client-template.vm")
 }
+

@@ -33,7 +33,6 @@ class Commands {
             }
         }
     }
-
 }
 
 interface Command {
