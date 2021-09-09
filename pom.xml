@@ -52,6 +52,13 @@
 			<version>1.69</version>
 		</dependency>
 
+		<!-- Kademlia API -->
+		<dependency>
+			<groupId>io.ep2p</groupId>
+			<artifactId>kademlia-api</artifactId>
+			<version>3.0.0-RELEASE</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
