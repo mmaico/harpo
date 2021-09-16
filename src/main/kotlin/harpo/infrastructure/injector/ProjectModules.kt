@@ -15,10 +15,14 @@ class ProjectModules: AbstractModule() {
     fun getShamir(): SecretSharing = SecretSharing()
 }
 
+class NetworkModules: AbstractModule() {
+
+}
+
 class ServiceLocator {
 
     companion object {
-        private val injector: Injector = Guice.createInjector(ProjectModules())
+        private val injector: Injector = Guice.createInjector(ProjectModules(), NetworkModules())
         fun getInjector() = injector
     }
 }
