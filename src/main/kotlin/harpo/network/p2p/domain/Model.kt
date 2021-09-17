@@ -12,7 +12,6 @@ data class Contact(val ip: String, val port: Int) {
 
 sealed class Node(val id: BigInteger, val distance: Int = 0, val lastSeen: Long , val contact: Contact)
 class External(id: BigInteger, distance: Int = 0, lastSeen: Long = 0, contact: Contact): Node(id, distance, lastSeen, contact)
-
 class Self(id: BigInteger, distance: Int = 0, lastSeen: Long = 0 , contact: Contact): Node(id, distance, lastSeen, contact) {
 
     fun ping(external: External) {

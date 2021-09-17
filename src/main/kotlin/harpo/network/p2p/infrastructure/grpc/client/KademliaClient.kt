@@ -1,5 +1,6 @@
 package harpo.network.p2p.infrastructure.grpc.client
 
+
 import harpo.infrastructure.base.Base
 import harpo.infrastructure.base.hexToBigInteger
 import harpo.network.p2p.KademliaServiceGrpc
@@ -21,7 +22,6 @@ class KademliaClient {
         val node = stub.getNodeBy(contactGRPC)
         return External(id = node.id.hexToBigInteger(Base.HEX), contact = contact)
     }
-
 
     fun ping(self: Self, external: External): Boolean {
         val channel = ChannelPool.getBy(external.contact)
