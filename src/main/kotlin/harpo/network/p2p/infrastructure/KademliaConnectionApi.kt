@@ -1,4 +1,4 @@
-package harpo.network.p2p.client
+package harpo.network.p2p.infrastructure
 
 import io.ep2p.kademlia.connection.ConnectionInfo
 import io.ep2p.kademlia.connection.NodeConnectionApi

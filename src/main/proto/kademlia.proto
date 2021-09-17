@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
 
 package harpo.network.p2p;
 
@@ -8,8 +9,8 @@ service KademliaLogService {
   rpc Log (CreateLog) returns (ResponseLog) {}
 }
 
-service KademliaConnection {
-  rpc bootstrap (Contact) returns (Node) {}
+service KademliaService {
+  rpc getNodeBy (Contact) returns (Node) {}
   rpc ping (Node) returns (Answer){}
   rpc findClosest(Node) returns (Closest){}
 }
@@ -26,7 +27,7 @@ message Node {
 }
 
 message Contact {
-  string id = 1;
+  string ip = 1;
   int32 port = 2;
 }
 
@@ -34,10 +35,10 @@ message Answer {
   bool isAlive = 1;
 }
 
-
 message CreateLog {
   string value = 1;
 }
+
 message ResponseLog {
   string response = 1;
 }

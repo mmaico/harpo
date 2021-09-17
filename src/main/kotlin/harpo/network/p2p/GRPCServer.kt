@@ -16,8 +16,7 @@ class HelloWorldClient(val channel: ManagedChannel) : Closeable {
 
 
     fun log(value: String)  {
-        val kademliaConnection = KademliaConnectionGrpc.newBlockingStub(channel)
-
+        val kademliaConnection = KademliaServiceGrpc.newBlockingStub(channel)
 
         val request = CreateLog.newBuilder().setValue(value).build()
         try {
@@ -38,6 +37,7 @@ fun main() {
 
 fun runServer() {
     ServerBuilder.forPort(8383).addService(KvService()).build().start()
+    ServerBuilder.forPort(8383).addService(KvService()).build()
     Thread.sleep(5000)
     val channel = ManagedChannelBuilder.forTarget("localhost:8383").usePlaintext()
     HelloWorldClient(channel.build()).log("test")

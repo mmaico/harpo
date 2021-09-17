@@ -1,4 +1,4 @@
-package harpo.network.p2p.client
+package harpo.network.p2p.infrastructure.grpc.client
 
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
