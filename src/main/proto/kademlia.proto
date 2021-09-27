@@ -10,9 +10,9 @@ service KademliaLogService {
 }
 
 service KademliaService {
-  rpc getNodeBy (Contact) returns (Node) {}
-  rpc ping (Node) returns (Answer){}
-  rpc findClosest(Node) returns (Closest){}
+  rpc shutdownSignal (Node) returns (google.protobuf.Empty) {}
+  rpc ping (Node) returns (Answer) {}
+  rpc findClosest (Node) returns (Closest) {}
 }
 
 message Closest {
