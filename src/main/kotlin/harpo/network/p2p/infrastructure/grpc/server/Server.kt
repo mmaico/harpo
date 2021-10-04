@@ -5,9 +5,18 @@ import harpo.infrastructure.injector.ServiceLocator.Companion.getInjector
 import io.grpc.ServerBuilder
 
 @Singleton
-class Server(private val gRPCServer: io.grpc.Server = ServerBuilder.forPort(8383)
-    .addService(getInjector().getInstance(KademliaService::class.java)).build(), private var isRunning: Boolean = false) {
+class Server(private val port: Int = 9393, private var isRunning: Boolean = false) {
 
-    fun start() = if (!isRunning) this.gRPCServer.start() else isRunning = true
+    private val gRPCServer: io.grpc.Server = ServerBuilder.forPort(port)
+        .addService(getInjector().getInstance(KademliaService::class.java)).build()
+
+    fun start() {
+        if (!isRunning) {
+            this.gRPCServer.start()
+            isRunning = true
+        } else {
+            println("The server already is running on port: $port")
+        }
+    }
 
 }

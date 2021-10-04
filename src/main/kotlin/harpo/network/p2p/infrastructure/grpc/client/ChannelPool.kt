@@ -1,6 +1,6 @@
 package harpo.network.p2p.infrastructure.grpc.client
 
-import harpo.network.p2p.domain.Contact
+import harpo.network.p2p.domain.model.Contact
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 

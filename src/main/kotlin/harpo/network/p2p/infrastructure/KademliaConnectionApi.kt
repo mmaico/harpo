@@ -2,7 +2,7 @@ package harpo.network.p2p.infrastructure
 
 import harpo.infrastructure.commons.ID
 import harpo.network.p2p.KademliaServiceGrpc
-import harpo.network.p2p.domain.Contact
+import harpo.network.p2p.domain.model.Contact
 import harpo.network.p2p.infrastructure.grpc.client.ChannelPool
 import io.ep2p.kademlia.connection.ConnectionInfo
 import io.ep2p.kademlia.connection.NodeConnectionApi

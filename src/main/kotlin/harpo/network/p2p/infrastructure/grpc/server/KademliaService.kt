@@ -9,12 +9,14 @@ import io.ep2p.kademlia.node.external.BigIntegerExternalNode
 import io.grpc.stub.StreamObserver
 import java.math.BigInteger
 import java.util.*
+
 import io.ep2p.kademlia.node.Node as KNode
 
 
 class KademliaService(private var selfNode: KademliaNode<BigInteger, ConnectionInfoImpl>): KademliaServiceGrpc.KademliaServiceImplBase() {
 
 
+    // The method should be call the model instead of Kademlia api
     override fun shutdownSignal(nodeThatWillTurnOff: Node?, responseObserver: StreamObserver<Empty>?) {
         val kademliaExternalNode = BigIntegerExternalNode(
             KNode(
