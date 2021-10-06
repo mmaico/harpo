@@ -6,8 +6,8 @@ import harpo.network.p2p.Answer
 import harpo.network.p2p.KademliaServiceGrpc
 import harpo.network.p2p.domain.model.Closest
 import harpo.network.p2p.domain.model.Contact
-import harpo.network.p2p.domain.model.External
-import harpo.network.p2p.domain.model.Self
+import harpo.network.p2p.domain.model.node.External
+import harpo.network.p2p.domain.model.node.Self
 import harpo.network.p2p.view.support.NodeToResourceAssembler.Companion.buildFrom
 import io.grpc.stub.StreamObserver
 import harpo.network.p2p.Closest as ClosestResource

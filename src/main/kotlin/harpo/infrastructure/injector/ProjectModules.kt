@@ -8,6 +8,7 @@ import harpo.network.p2p.KademliaServiceGrpc
 import harpo.network.p2p.infrastructure.ConnectionInfoImpl
 import harpo.network.p2p.infrastructure.KademliaConnectionApi
 import harpo.network.p2p.infrastructure.grpc.server.KademliaService
+import harpo.network.p2p.view.P2PEndpoint
 import io.ep2p.kademlia.NodeSettings
 import io.ep2p.kademlia.node.KademliaNode
 import io.ep2p.kademlia.table.BigIntegerRoutingTable
@@ -43,7 +44,7 @@ class P2PModules: AbstractModule() {
 
     override fun configure() {
         bind(KademliaNode::class.java).toInstance(selfNode())
-        bind(KademliaService::class.java).toInstance(KademliaService(selfNode()))
+        bind(P2PEndpoint::class.java).toInstance(P2PEndpoint(null))
     }
 }
 
