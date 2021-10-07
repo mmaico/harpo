@@ -4,15 +4,14 @@ import com.google.inject.*
 import com.google.inject.name.Names
 import harpo.criptography.ecdh.ECDHCipher
 import harpo.criptography.shamir.SecretSharing
-import harpo.network.p2p.KademliaServiceGrpc
+import harpo.network.p2p.domain.model.node.SelfRepository
 import harpo.network.p2p.infrastructure.ConnectionInfoImpl
 import harpo.network.p2p.infrastructure.KademliaConnectionApi
-import harpo.network.p2p.infrastructure.grpc.server.KademliaService
+import harpo.network.p2p.infrastructure.SelfRepositoryKademliaAPI
 import harpo.network.p2p.view.P2PEndpoint
 import io.ep2p.kademlia.NodeSettings
 import io.ep2p.kademlia.node.KademliaNode
 import io.ep2p.kademlia.table.BigIntegerRoutingTable
-import io.ep2p.kademlia.table.RoutingTable
 import java.math.BigInteger
 
 class ProjectModules: AbstractModule() {
@@ -23,9 +22,6 @@ class ProjectModules: AbstractModule() {
     fun getShamir(): SecretSharing = SecretSharing()
 }
 
-class NetworkModules: AbstractModule() {
-
-}
 
 class P2PModules: AbstractModule() {
 
@@ -42,16 +38,20 @@ class P2PModules: AbstractModule() {
         return KademliaNode(nodeId, BigIntegerRoutingTable(nodeId, NodeSettings()), KademliaConnectionApi(), ConnectionInfoImpl("localhost", 8384))
     }
 
+    @Provides @Singleton
+    fun p2pEndpoint() = P2PEndpoint()
+
+
     override fun configure() {
         bind(KademliaNode::class.java).toInstance(selfNode())
-        bind(P2PEndpoint::class.java).toInstance(P2PEndpoint(null))
+        bind(SelfRepository::class.java).toInstance(SelfRepositoryKademliaAPI(selfNode()))
     }
 }
 
 class ServiceLocator {
 
     companion object {
-        private val injector: Injector = Guice.createInjector(ProjectModules(), NetworkModules(), P2PModules())
+        private val injector: Injector = Guice.createInjector(ProjectModules(), P2PModules())
         fun getInjector() = injector
     }
 }

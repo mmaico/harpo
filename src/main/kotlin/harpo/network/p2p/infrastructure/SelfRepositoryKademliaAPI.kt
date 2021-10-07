@@ -13,22 +13,22 @@ import java.math.BigInteger
 import java.util.*
 
 @Singleton
-class SelfRepositoryKademliaAPI(private val kademliaSelfNode: KademliaNode<BigInteger, ConnectionInfoImpl>): SelfRepository {
+class SelfRepositoryKademliaAPI (private val selfKademliaNode: KademliaNode<BigInteger, ConnectionInfoImpl>): SelfRepository {
 
     override fun receivedShutdownSignalFrom(external: External) {
         val externalKademliaNode = Node(external.id, ConnectionInfoImpl(external.contact.ip, external.contact.port), Date())
-        kademliaSelfNode.onShutdownSignal(externalKademliaNode)
+        selfKademliaNode.onShutdownSignal(externalKademliaNode)
     }
 
     override fun receivedPingFrom(external: External): ImLive {
         val externalKademliaNode = Node(external.id, ConnectionInfoImpl(external.contact.ip, external.contact.port), Date())
-        val answer = kademliaSelfNode.onPing(externalKademliaNode)
+        val answer = selfKademliaNode.onPing(externalKademliaNode)
         return ImLive(isLive = answer.isAlive)
     }
 
     override fun findClosestTo(external: External): Closest {
         val externalKademliaNode = Node(external.id, ConnectionInfoImpl(external.contact.ip, external.contact.port), Date())
-        val kademliaClosest = kademliaSelfNode.onFindNode(externalKademliaNode, external.id)
+        val kademliaClosest = selfKademliaNode.onFindNode(externalKademliaNode, external.id)
 
         val nodesClosestToExternal: List<External> = kademliaClosest.nodes.map {
             External(it.id, it.distance, it.lastSeen.time, Contact(it.connectionInfo.ip, it.connectionInfo.port))
