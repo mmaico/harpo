@@ -17,12 +17,13 @@ import harpo.network.p2p.Node as NodeResource
  * Class responsible for receive the network interaction and call the domain module
  */
 @Singleton
-class P2PEndpoint (private val self: Self = Self()): KademliaServiceGrpc.KademliaServiceImplBase() {
+class P2PEndpoint(private val self: Self = Self()) : KademliaServiceGrpc.KademliaServiceImplBase() {
 
     override fun shutdownSignal(nodeThatWillShutdown: NodeResource?, responseObserver: StreamObserver<Empty>?) {
         val external = External(
             id = nodeThatWillShutdown?.id?.toBigInteger()!!,
-            contact = Contact(ip = nodeThatWillShutdown.contact.ip, port = nodeThatWillShutdown.contact.port))
+            contact = Contact(ip = nodeThatWillShutdown.contact.ip, port = nodeThatWillShutdown.contact.port)
+        )
 
         this.self.receivedShutdownSignalFrom(external)
 
@@ -33,7 +34,8 @@ class P2PEndpoint (private val self: Self = Self()): KademliaServiceGrpc.Kademli
     override fun ping(requester: NodeResource?, responseObserver: StreamObserver<Answer>?) {
         val external = External(
             id = requester?.id?.toBigInteger()!!,
-            contact = Contact(ip = requester.contact.ip, port = requester.contact.port))
+            contact = Contact(ip = requester.contact.ip, port = requester.contact.port)
+        )
 
         this.self.receivedPingFrom(external)
 
@@ -45,12 +47,12 @@ class P2PEndpoint (private val self: Self = Self()): KademliaServiceGrpc.Kademli
     override fun findClosest(requester: NodeResource?, responseObserver: StreamObserver<ClosestResource>?) {
         val external = External(
             id = requester?.id?.toBigInteger()!!,
-            contact = Contact(ip = requester.contact.ip, port = requester.contact.port))
+            contact = Contact(ip = requester.contact.ip, port = requester.contact.port)
+        )
 
         val closest: Closest = this.self.findClosestTo(external)
 
         responseObserver?.onNext(buildFrom(closest).build())
         responseObserver?.onCompleted()
     }
-
 }

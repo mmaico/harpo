@@ -1,6 +1,5 @@
 package harpo.infrastructure.template_engine.parser
 
-
 import org.apache.velocity.Template
 import org.apache.velocity.VelocityContext
 import org.apache.velocity.runtime.RuntimeServices
@@ -30,5 +29,4 @@ class StringTemplateHelper {
             }
         }
     }
-
 }

@@ -5,7 +5,6 @@ import harpo.network.p2p.domain.model.Closest
 import harpo.network.p2p.domain.model.Contact
 import harpo.network.p2p.domain.model.node.External
 import harpo.network.p2p.domain.model.node.ImLive
-
 import harpo.network.p2p.domain.model.node.SelfRepository
 import io.ep2p.kademlia.node.KademliaNode
 import io.ep2p.kademlia.node.Node
@@ -13,7 +12,7 @@ import java.math.BigInteger
 import java.util.*
 
 @Singleton
-class SelfRepositoryKademliaAPI (private val selfKademliaNode: KademliaNode<BigInteger, ConnectionInfoImpl>): SelfRepository {
+class SelfRepositoryKademliaAPI(private val selfKademliaNode: KademliaNode<BigInteger, ConnectionInfoImpl>) : SelfRepository {
 
     override fun receivedShutdownSignalFrom(external: External) {
         val externalKademliaNode = Node(external.id, ConnectionInfoImpl(external.contact.ip, external.contact.port), Date())

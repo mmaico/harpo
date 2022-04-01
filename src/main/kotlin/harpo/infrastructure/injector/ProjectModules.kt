@@ -1,7 +1,6 @@
 package harpo.infrastructure.injector
 
 import com.google.inject.*
-import com.google.inject.name.Names
 import harpo.criptography.ecdh.ECDHCipher
 import harpo.criptography.shamir.SecretSharing
 import harpo.network.p2p.domain.model.node.SelfRepository
@@ -14,7 +13,7 @@ import io.ep2p.kademlia.node.KademliaNode
 import io.ep2p.kademlia.table.BigIntegerRoutingTable
 import java.math.BigInteger
 
-class ProjectModules: AbstractModule() {
+class ProjectModules : AbstractModule() {
     @Provides @Singleton
     fun getCipher(): ECDHCipher = ECDHCipher()
 
@@ -22,8 +21,7 @@ class ProjectModules: AbstractModule() {
     fun getShamir(): SecretSharing = SecretSharing()
 }
 
-
-class P2PModules: AbstractModule() {
+class P2PModules : AbstractModule() {
 
     @Provides @Singleton
     fun getKademliaAPI() = KademliaConnectionApi()
@@ -33,14 +31,13 @@ class P2PModules: AbstractModule() {
      * the alternative was to do the configuration using the configure with bind and toInstance
      */
     private fun selfNode(): KademliaNode<BigInteger, ConnectionInfoImpl> {
-        //TODO get the configs in the properties file
+        // TODO get the configs in the properties file
         val nodeId = BigInteger("397c80bef1514077839a3a02d4bcf1a3", 16)
         return KademliaNode(nodeId, BigIntegerRoutingTable(nodeId, NodeSettings()), KademliaConnectionApi(), ConnectionInfoImpl("localhost", 8384))
     }
 
     @Provides @Singleton
     fun p2pEndpoint() = P2PEndpoint()
-
 
     override fun configure() {
         bind(KademliaNode::class.java).toInstance(selfNode())

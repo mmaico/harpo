@@ -17,7 +17,6 @@ class SecretSharing {
             val secret = message.toByteArray(StandardCharsets.UTF_8)
             val parts = scheme.split(secret)
             return parts.entries.map { SecretFragment(it.key, toBase64String(it.value)) }.toList()
-
         }
 
         fun assembly(fragmets: List<SecretFragment>): String {

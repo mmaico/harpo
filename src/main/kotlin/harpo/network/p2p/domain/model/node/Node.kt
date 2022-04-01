@@ -9,14 +9,19 @@ import java.math.BigInteger
 
 sealed class Node(val id: BigInteger, val distance: BigInteger, val lastSeen: Long, val contact: Contact)
 
-class External(id: BigInteger, distance: BigInteger = BigInteger.ONE, lastSeen: Long = 0, contact: Contact): Node(id, distance, lastSeen, contact)
+class External(id: BigInteger, distance: BigInteger = BigInteger.ONE, lastSeen: Long = 0, contact: Contact) : Node(id, distance, lastSeen, contact)
 
-class Self(id: BigInteger, distance: BigInteger = BigInteger.ONE, lastSeen: Long = 0, contact: Contact,
-           private val repository: SelfRepository): Node(id, distance, lastSeen, contact) {
+class Self(
+    id: BigInteger,
+    distance: BigInteger = BigInteger.ONE,
+    lastSeen: Long = 0,
+    contact: Contact,
+    private val repository: SelfRepository
+) : Node(id, distance, lastSeen, contact) {
 
     fun receivedShutdownSignalFrom(external: External) = repository.receivedShutdownSignalFrom(external)
 
-    fun receivedPingFrom(external: External) : ImLive = repository.receivedPingFrom(external)
+    fun receivedPingFrom(external: External): ImLive = repository.receivedPingFrom(external)
 
     fun findClosestTo(external: External): Closest = repository.findClosestTo(external)
 

@@ -15,19 +15,18 @@ import java.util.*
 import harpo.network.p2p.Contact as ContactGRPC
 import harpo.network.p2p.Node as NodeGRPC
 
-data class ConnectionInfoImpl(val ip: String, val port: Int): ConnectionInfo {
-    fun getContact(): String = "${ip}:${port}"
+data class ConnectionInfoImpl(val ip: String, val port: Int) : ConnectionInfo {
+    fun getContact(): String = "$ip:$port"
 }
 
-class KademliaConnectionApi: NodeConnectionApi<BigInteger, ConnectionInfoImpl> {
-
+class KademliaConnectionApi : NodeConnectionApi<BigInteger, ConnectionInfoImpl> {
 
     override fun ping(self: Node<BigInteger, ConnectionInfoImpl>?, external: Node<BigInteger, ConnectionInfoImpl>?): PingAnswer<BigInteger> {
         val externalContact = external!!.connectionInfo
         val selfContact = self!!.connectionInfo
         val channel = ChannelPool.getBy(Contact(externalContact.ip, externalContact.port))
         val stub = KademliaServiceGrpc.newBlockingStub(channel)
-        //TODO need to treat exception there is network failure
+        // TODO need to treat exception there is network failure
         val contactGRPC = ContactGRPC.newBuilder().setIp(selfContact.ip).setPort(selfContact.port).build()
         val grpcSelfNode = NodeGRPC.newBuilder()
             .setId(self.id.toString(ID.HEX))
@@ -45,7 +44,7 @@ class KademliaConnectionApi: NodeConnectionApi<BigInteger, ConnectionInfoImpl> {
         val selfContact = self!!.connectionInfo
         val channel = ChannelPool.getBy(Contact(externalContact.ip, externalContact.port))
         val stub = KademliaServiceGrpc.newBlockingStub(channel)
-        //TODO need to treat exception there is network failure
+        // TODO need to treat exception there is network failure
         val contactGRPC = ContactGRPC.newBuilder().setIp(selfContact.ip).setPort(selfContact.port).build()
         val grpcSelfNode = NodeGRPC.newBuilder()
             .setId(self.id.toString(ID.HEX))
@@ -54,13 +53,16 @@ class KademliaConnectionApi: NodeConnectionApi<BigInteger, ConnectionInfoImpl> {
         stub.shutdownSignal(grpcSelfNode)
     }
 
-    override fun findNode(self: Node<BigInteger, ConnectionInfoImpl>?, external: Node<BigInteger, ConnectionInfoImpl>?, selfNodeId: BigInteger?
+    override fun findNode(
+        self: Node<BigInteger, ConnectionInfoImpl>?,
+        external: Node<BigInteger, ConnectionInfoImpl>?,
+        selfNodeId: BigInteger?
     ): FindNodeAnswer<BigInteger, ConnectionInfoImpl> {
         val externalContact = external!!.connectionInfo
         val selfContact = self!!.connectionInfo
         val channel = ChannelPool.getBy(Contact(externalContact.ip, externalContact.port))
         val stub = KademliaServiceGrpc.newBlockingStub(channel)
-        //TODO need to treat exception there is network failure
+        // TODO need to treat exception there is network failure
         val contactGRPC = ContactGRPC.newBuilder().setIp(selfContact.ip).setPort(selfContact.port).build()
         val selfGRPCNode = NodeGRPC.newBuilder()
             .setId(self.id.toString(ID.HEX))
@@ -69,12 +71,16 @@ class KademliaConnectionApi: NodeConnectionApi<BigInteger, ConnectionInfoImpl> {
         val nodeAnswer = FindNodeAnswer<BigInteger, ConnectionInfoImpl>(self.id)
 
         closest.nodesList.forEach {
-            val externalNode = BigIntegerExternalNode(Node(it.id.toBigInteger(),
-                ConnectionInfoImpl(it.contact.ip, it.contact.port), Date()), BigInteger.ONE)
+            val externalNode = BigIntegerExternalNode(
+                Node(
+                    it.id.toBigInteger(),
+                    ConnectionInfoImpl(it.contact.ip, it.contact.port), Date()
+                ),
+                BigInteger.ONE
+            )
             nodeAnswer.nodes.add(externalNode)
         }
 
         return nodeAnswer
     }
-
 }

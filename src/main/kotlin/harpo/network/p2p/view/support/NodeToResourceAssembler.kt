@@ -12,10 +12,13 @@ class NodeToResourceAssembler {
     companion object {
         fun buildFrom(closest: Closest): Builder {
             val closestBuilder = newBuilder()
-            closest.nodes.forEach { closestBuilder.addNodes(
-                Node.newBuilder().setId(it.id.toString(ID.HEX))
-                    .setContact(Contact.newBuilder().setIp(it.contact.ip).setPort(it.contact.port))
-                    .build())}
+            closest.nodes.forEach {
+                closestBuilder.addNodes(
+                    Node.newBuilder().setId(it.id.toString(ID.HEX))
+                        .setContact(Contact.newBuilder().setIp(it.contact.ip).setPort(it.contact.port))
+                        .build()
+                )
+            }
             return closestBuilder
         }
     }

@@ -6,16 +6,12 @@ import io.grpc.stub.StreamObserver
 import java.io.Closeable
 import java.util.concurrent.TimeUnit
 
-class GRPCServer {
-
-
-}
+class GRPCServer
 class HelloWorldClient(val channel: ManagedChannel) : Closeable {
 
     private val stub = KademliaLogServiceGrpc.newBlockingStub(channel)
 
-
-    fun log(value: String)  {
+    fun log(value: String) {
         val kademliaConnection = KademliaServiceGrpc.newBlockingStub(channel)
 
         val request = CreateLog.newBuilder().setValue(value).build()
@@ -41,10 +37,9 @@ fun runServer() {
     Thread.sleep(5000)
     val channel = ManagedChannelBuilder.forTarget("localhost:8383").usePlaintext()
     HelloWorldClient(channel.build()).log("test")
-
 }
 
-class KvService: KademliaLogServiceGrpc.KademliaLogServiceImplBase() {
+class KvService : KademliaLogServiceGrpc.KademliaLogServiceImplBase() {
 
     override fun log(request: CreateLog?, responseObserver: StreamObserver<ResponseLog>?) {
         println("*************** Server receved this data: ${request?.value}")

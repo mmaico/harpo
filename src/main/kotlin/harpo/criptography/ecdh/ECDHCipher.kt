@@ -32,8 +32,10 @@ class ECDHCipher {
 
     fun getKeyPair(): KeyPair {
         val ecKeyPair = ecKeyGen.generateKeyPair()
-        return KeyPair(publicKey = toBase64String(ecKeyPair.public.encoded),
-                        privateKey = toBase64String(ecKeyPair.private.encoded))
+        return KeyPair(
+            publicKey = toBase64String(ecKeyPair.public.encoded),
+            privateKey = toBase64String(ecKeyPair.private.encoded)
+        )
     }
 
     fun encrypt(message: String, keyPair: KeyPair): String {
@@ -57,8 +59,6 @@ class ECDHCipher {
 
         return String(iesDecipher.doFinal(decode(message.toByteArray())))
     }
-
-
 }
 
 data class KeyPair(val privateKey: String, val publicKey: String)

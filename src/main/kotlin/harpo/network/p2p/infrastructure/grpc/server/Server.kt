@@ -19,5 +19,4 @@ class Server(private val port: Int = 9393, private var isRunning: Boolean = fals
             println("The server already is running on port: $port")
         }
     }
-
 }
