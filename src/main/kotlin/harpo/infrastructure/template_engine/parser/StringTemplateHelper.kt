@@ -15,7 +15,7 @@ class StringTemplateHelper {
                 val runtimeServices: RuntimeServices = RuntimeSingleton.getRuntimeServices()
                 runtimeServices.setProperty("runtime.log.logsystem.class", "org.apache.velocity.runtime.log.NullLogChute")
                 val reader = StringReader(templateStr)
-                val node: SimpleNode = runtimeServices.parse(reader, "template")
+                val node: SimpleNode = runtimeServices.parse(reader, Template())
                 val result = StringWriter()
                 val context = VelocityContext(params)
                 val template = Template()
