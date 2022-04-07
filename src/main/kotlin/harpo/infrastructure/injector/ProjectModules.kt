@@ -3,11 +3,11 @@ package harpo.infrastructure.injector
 import com.google.inject.*
 import harpo.criptography.ecdh.ECDHCipher
 import harpo.criptography.shamir.SecretSharing
-import harpo.network.p2p.domain.model.node.SelfRepository
-import harpo.network.p2p.infrastructure.ConnectionInfoImpl
-import harpo.network.p2p.infrastructure.KademliaConnectionApi
-import harpo.network.p2p.infrastructure.SelfRepositoryKademliaAPI
-import harpo.network.p2p.view.P2PEndpoint
+import harpo.network.communication.p2p.domain.model.node.SelfRepository
+import harpo.network.communication.p2p.infrastructure.ConnectionInfoImpl
+import harpo.network.communication.p2p.infrastructure.KademliaConnectionApi
+import harpo.network.communication.p2p.infrastructure.SelfRepositoryKademliaAPI
+import harpo.network.communication.p2p.view.P2PEndpoint
 import io.ep2p.kademlia.NodeSettings
 import io.ep2p.kademlia.node.KademliaNode
 import io.ep2p.kademlia.table.BigIntegerRoutingTable

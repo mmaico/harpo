@@ -1,4 +1,14 @@
 package harpo.network.kserver
 
-class KServer {
+import java.util.*
+
+class KServer(val id: String = UUID.randomUUID().toString(), val connection: Connection) {
+
+    operator fun invoke(): KServer {
+        // create a selfnode using the configuration
+        // start the grpc server
+
+    }
 }
+
+class Connection(val host: String, val post: Int)

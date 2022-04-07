@@ -1,4 +1,4 @@
-package harpo.network.communication.p2p.infrastructure.grpc.server
+package harpo.network.kserver.infrastructure.grpc.server
 
 import com.google.inject.Singleton
 import harpo.infrastructure.injector.ServiceLocator.Companion.getInjector
