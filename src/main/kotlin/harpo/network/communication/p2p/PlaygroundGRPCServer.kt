@@ -5,7 +5,6 @@ import io.grpc.stub.StreamObserver
 import java.io.Closeable
 import java.util.concurrent.TimeUnit
 
-class GRPCServer
 class HelloWorldClient(val channel: ManagedChannel) : Closeable {
 
     private val stub = KademliaLogServiceGrpc.newBlockingStub(channel)
