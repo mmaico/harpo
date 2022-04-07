@@ -1,9 +1,9 @@
-package harpo.network.p2p.infrastructure
+package harpo.network.communication.p2p.infrastructure
 
 import harpo.infrastructure.commons.ID
-import harpo.network.p2p.KademliaServiceGrpc
-import harpo.network.p2p.domain.model.Contact
-import harpo.network.p2p.infrastructure.grpc.client.ChannelPool
+import harpo.network.communication.p2p.KademliaServiceGrpc
+import harpo.network.communication.p2p.domain.model.Contact
+import harpo.network.communication.p2p.infrastructure.grpc.client.ChannelPool
 import io.ep2p.kademlia.connection.ConnectionInfo
 import io.ep2p.kademlia.connection.NodeConnectionApi
 import io.ep2p.kademlia.model.FindNodeAnswer
@@ -12,8 +12,8 @@ import io.ep2p.kademlia.node.Node
 import io.ep2p.kademlia.node.external.BigIntegerExternalNode
 import java.math.BigInteger
 import java.util.*
-import harpo.network.p2p.Contact as ContactGRPC
-import harpo.network.p2p.Node as NodeGRPC
+import harpo.network.communication.p2p.Contact as ContactGRPC
+import harpo.network.communication.p2p.Node as NodeGRPC
 
 data class ConnectionInfoImpl(val ip: String, val port: Int) : ConnectionInfo {
     fun getContact(): String = "$ip:$port"

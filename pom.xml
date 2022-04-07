@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<java.version>11</java.version>
-		<kotlin.version>1.6.10</kotlin.version>
+		<kotlin.version>1.6.20</kotlin.version>
 		<grpc.version>1.45.0</grpc.version>
 		<protoc.version>3.19.4</protoc.version>
 		<protoc.kotlin.version>1.2.1</protoc.kotlin.version>
@@ -68,7 +68,7 @@
 		<dependency>
 			<groupId>io.ep2p</groupId>
 			<artifactId>kademlia-api</artifactId>
-			<version>3.0.0-RELEASE</version>
+			<version>4.1.0-RELEASE</version>
 		</dependency>
 
 		<!-- gRPC -->
@@ -113,6 +113,17 @@
 			<version>${grpc.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-stdlib-jdk8</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-test</artifactId>
+			<version>${kotlin.version}</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
@@ -122,11 +133,36 @@
 			<plugin>
 				<groupId>org.jetbrains.kotlin</groupId>
 				<artifactId>kotlin-maven-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>${kotlin.version}</version>
+				<executions>
+					<execution>
+						<id>compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<configuration>
+							<sourceDirs>
+								<source>target/generated-sources/protobuf/java</source>
+								<source>target/generated-sources/protobuf/grpc-java</source>
+								<source>src/main/kotlin</source>
+								<source>target/generated-sources/protobuf/kotlin</source>
+							</sourceDirs>
+						</configuration>
+					</execution>
+					<execution>
+						<id>test-compile</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>test-compile</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
 					<args>
 						<arg>-Xopt-in=kotlin.RequiresOptIn</arg>
 					</args>
+					<jvmTarget>1.8</jvmTarget>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -198,6 +234,26 @@
 						<goals>
 							<goal>format</goal>
 							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>testCompile</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>testCompile</goal>
 						</goals>
 					</execution>
 				</executions>

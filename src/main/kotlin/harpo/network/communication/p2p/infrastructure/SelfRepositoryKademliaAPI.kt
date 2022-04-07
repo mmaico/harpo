@@ -1,11 +1,11 @@
-package harpo.network.p2p.infrastructure
+package harpo.network.communication.p2p.infrastructure
 
 import com.google.inject.Singleton
-import harpo.network.p2p.domain.model.Closest
-import harpo.network.p2p.domain.model.Contact
-import harpo.network.p2p.domain.model.node.External
-import harpo.network.p2p.domain.model.node.ImLive
-import harpo.network.p2p.domain.model.node.SelfRepository
+import harpo.network.communication.p2p.domain.model.Closest
+import harpo.network.communication.p2p.domain.model.Contact
+import harpo.network.communication.p2p.domain.model.node.External
+import harpo.network.communication.p2p.domain.model.node.ImLive
+import harpo.network.communication.p2p.domain.model.node.SelfRepository
 import io.ep2p.kademlia.node.KademliaNode
 import io.ep2p.kademlia.node.Node
 import java.math.BigInteger

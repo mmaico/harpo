@@ -1,6 +1,5 @@
-package harpo.network.p2p
+package harpo.network.communication.p2p
 
-import harpo.*
 import io.grpc.*
 import io.grpc.stub.StreamObserver
 import java.io.Closeable

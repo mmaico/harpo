@@ -1,12 +1,12 @@
-package harpo.network.p2p.infrastructure.grpc.server
+package harpo.network.communication.p2p.infrastructure.grpc.server
 
 import com.google.inject.Singleton
 import harpo.infrastructure.injector.ServiceLocator.Companion.getInjector
-import harpo.network.p2p.view.P2PEndpoint
+import harpo.network.communication.p2p.view.P2PEndpoint
 import io.grpc.ServerBuilder
 
 @Singleton
-class Server(private val port: Int = 9393, private var isRunning: Boolean = false) {
+class GRPCServer(private val port: Int = 9393, private var isRunning: Boolean = false) {
 
     private val gRPCServer: io.grpc.Server = ServerBuilder.forPort(port)
         .addService(getInjector().getInstance(P2PEndpoint::class.java)).build()

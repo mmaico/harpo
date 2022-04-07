@@ -1,6 +1,6 @@
-package harpo.network.p2p.domain.model
+package harpo.network.communication.p2p.domain.model
 
-import harpo.network.p2p.domain.model.node.External
+import harpo.network.communication.p2p.domain.model.node.External
 
 data class Contact(val ip: String, val port: Int) {
     fun findNode(): External {

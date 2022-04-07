@@ -1,6 +1,6 @@
-package harpo.network.p2p.domain.model.node
+package harpo.network.communication.p2p.domain.model.node
 
-import harpo.network.p2p.domain.model.Closest
+import harpo.network.communication.p2p.domain.model.Closest
 
 interface SelfRepository {
     fun receivedShutdownSignalFrom(external: External)
