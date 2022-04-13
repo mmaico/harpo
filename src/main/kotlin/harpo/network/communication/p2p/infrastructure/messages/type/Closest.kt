@@ -8,13 +8,15 @@ import io.ep2p.kademlia.protocol.message.KademliaMessage
 import java.io.Serializable
 import java.math.BigDecimal
 
-class Pong(private val repository: OperationsRepository): Message {
+class Closest(private val repository: OperationsRepository): Message {
 
     override fun <INPUT : Serializable?, OUTPUT : Serializable?> sendMessage(
-        api: KademliaNodeAPI<BigDecimal, ConnectionInfoImpl>?,
-        external: Node<BigDecimal, ConnectionInfoImpl>?,
+        self: KademliaNodeAPI<BigDecimal, ConnectionInfoImpl>?,
+        receiver: Node<BigDecimal, ConnectionInfoImpl>?,
         message: KademliaMessage<BigDecimal, ConnectionInfoImpl, OUTPUT>?
     ): KademliaMessage<BigDecimal, ConnectionInfoImpl, INPUT> {
+
+        val closest = this.repository.closest(receiver, self)
 
         return
     }
