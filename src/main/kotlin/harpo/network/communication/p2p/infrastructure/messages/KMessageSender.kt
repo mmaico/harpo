@@ -14,8 +14,8 @@ import java.net.Proxy
 class KMessageSender: MessageSender<BigDecimal, ConnectionInfoImpl> {
 
     override fun <INPUT : Serializable?, OUTPUT : Serializable?> sendMessage(
-        api: KademliaNodeAPI<BigDecimal, ConnectionInfoImpl>?,
-        external: Node<BigDecimal, ConnectionInfoImpl>?,
+        self: KademliaNodeAPI<BigDecimal, ConnectionInfoImpl>?,
+        receiver: Node<BigDecimal, ConnectionInfoImpl>?,
         message: KademliaMessage<BigDecimal, ConnectionInfoImpl, OUTPUT>?
     ): KademliaMessage<BigDecimal, ConnectionInfoImpl, INPUT> {
 
