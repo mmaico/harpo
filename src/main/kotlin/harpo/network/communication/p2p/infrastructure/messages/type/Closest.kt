@@ -31,7 +31,7 @@ class Closest(private val repository: OperationsRepository): Message {
                 _id = it.id.toBigInteger(),
                 _lastSeen = now()
             )
-            nodeAnswer.add(BigIntegerExternalNode(externalNode, BigInteger.ONE))
+            nodeAnswer.add(BigIntegerExternalNode(externalNode, self?.id!!.xor(externalNode.id)))
         }
 
         val responseMessage = FindNodeResponseMessage<BigInteger, ConnectionInfoImpl>()
