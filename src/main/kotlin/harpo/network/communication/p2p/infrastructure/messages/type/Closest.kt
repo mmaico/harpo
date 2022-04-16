@@ -13,7 +13,7 @@ import io.ep2p.kademlia.protocol.message.KademliaMessage
 import java.io.Serializable
 import java.math.BigInteger
 
-class Closest(private val repository: OperationsRepository): Message {
+class Closest(private val repository: OperationsRepository = OperationsRepository()): Message {
 
     override fun <INPUT : Serializable?, OUTPUT : Serializable?> sendMessage(
         self: KademliaNodeAPI<BigInteger, ConnectionInfoImpl>?,

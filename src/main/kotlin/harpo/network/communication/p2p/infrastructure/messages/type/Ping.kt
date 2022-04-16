@@ -10,7 +10,7 @@ import java.io.Serializable
 import java.math.BigDecimal
 import java.math.BigInteger
 
-class Ping(private val repository: OperationsRepository): Message {
+class Ping(private val repository: OperationsRepository = OperationsRepository()): Message {
 
     override fun <INPUT : Serializable?, OUTPUT : Serializable?> sendMessage(
         self: KademliaNodeAPI<BigInteger, ConnectionInfoImpl>?,

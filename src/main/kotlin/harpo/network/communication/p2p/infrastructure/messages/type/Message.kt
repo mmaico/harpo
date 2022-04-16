@@ -10,8 +10,8 @@ import java.math.BigInteger
 interface Message {
 
     fun <INPUT : Serializable?, OUTPUT : Serializable?> sendMessage(
-        api: KademliaNodeAPI<BigInteger, ConnectionInfoImpl>?,
-        external: Node<BigInteger, ConnectionInfoImpl>?,
+        self: KademliaNodeAPI<BigInteger, ConnectionInfoImpl>?,
+        receiver: Node<BigInteger, ConnectionInfoImpl>?,
         message: KademliaMessage<BigInteger, ConnectionInfoImpl, OUTPUT>?
     ): KademliaMessage<BigInteger, ConnectionInfoImpl, INPUT>
 
