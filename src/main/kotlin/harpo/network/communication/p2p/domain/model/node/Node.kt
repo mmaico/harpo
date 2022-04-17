@@ -3,7 +3,7 @@ package harpo.network.communication.p2p.domain.model.node
 import harpo.infrastructure.injector.ServiceLocator
 import harpo.network.communication.p2p.domain.model.Closest
 import harpo.network.communication.p2p.domain.model.Contact
-import harpo.network.communication.p2p.infrastructure.ConnectionInfoImpl
+import harpo.network.communication.p2p.infrastructure.kademlia.ConnectionInfoImpl
 import io.ep2p.kademlia.node.KademliaNode
 import java.math.BigInteger
 

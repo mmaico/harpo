@@ -7,7 +7,7 @@ class KServer(val id: String = UUID.randomUUID().toString(), val connection: Con
     operator fun invoke(): KServer {
         // create a selfnode using the configuration
         // start the grpc server
-
+        TODO()
     }
 }
 

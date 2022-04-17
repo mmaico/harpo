@@ -4,11 +4,10 @@ import harpo.network.communication.p2p.Answer
 import harpo.network.communication.p2p.Contact.newBuilder
 import harpo.network.communication.p2p.KademliaServiceGrpc
 import harpo.network.communication.p2p.domain.model.Contact
-import harpo.network.communication.p2p.infrastructure.ConnectionInfoImpl
 import harpo.network.communication.p2p.infrastructure.grpc.client.ChannelPool
+import harpo.network.communication.p2p.infrastructure.kademlia.ConnectionInfoImpl
 import io.ep2p.kademlia.node.KademliaNodeAPI
 import io.ep2p.kademlia.node.Node
-import java.math.BigDecimal
 import java.math.BigInteger
 import harpo.network.communication.p2p.Node as NodeGRPC
 

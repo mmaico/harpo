@@ -1,6 +1,5 @@
 package harpo.network.communication.p2p.infrastructure.kademlia
 
-import harpo.network.communication.p2p.infrastructure.ConnectionInfoImpl
 import io.ep2p.kademlia.node.Node
 import java.math.BigInteger
 import java.util.*
