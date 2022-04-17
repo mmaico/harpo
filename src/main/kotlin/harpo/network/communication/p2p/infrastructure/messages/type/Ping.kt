@@ -1,13 +1,12 @@
 package harpo.network.communication.p2p.infrastructure.messages.type
 
-import harpo.network.communication.p2p.infrastructure.ConnectionInfoImpl
 import harpo.network.communication.p2p.infrastructure.grpc.repository.OperationsRepository
+import harpo.network.communication.p2p.infrastructure.kademlia.ConnectionInfoImpl
 import io.ep2p.kademlia.node.KademliaNodeAPI
 import io.ep2p.kademlia.node.Node
 import io.ep2p.kademlia.protocol.message.KademliaMessage
 import io.ep2p.kademlia.protocol.message.PongKademliaMessage
 import java.io.Serializable
-import java.math.BigDecimal
 import java.math.BigInteger
 
 class Ping(private val repository: OperationsRepository = OperationsRepository()): Message {
