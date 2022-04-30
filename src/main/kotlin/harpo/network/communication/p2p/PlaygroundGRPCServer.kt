@@ -1,5 +1,9 @@
 package harpo.network.communication.p2p
 
+import harpo.network.p2p.CreateLog
+import harpo.network.p2p.KademliaLogServiceGrpc
+import harpo.network.p2p.KademliaServiceGrpc
+import harpo.network.p2p.ResponseLog
 import io.grpc.*
 import io.grpc.stub.StreamObserver
 import java.io.Closeable

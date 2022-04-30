@@ -39,5 +39,4 @@ class Closest(private val repository: OperationsRepository = OperationsRepositor
 
         return responseMessage as KademliaMessage<BigInteger, ConnectionInfoImpl, INPUT>
     }
-
 }

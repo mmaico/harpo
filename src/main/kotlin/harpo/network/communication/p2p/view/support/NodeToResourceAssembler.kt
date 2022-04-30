@@ -1,10 +1,10 @@
 package harpo.network.communication.p2p.view.support
 
 import harpo.infrastructure.commons.ID
-import harpo.network.communication.p2p.Closest.Builder
-import harpo.network.communication.p2p.Closest.newBuilder
-import harpo.network.communication.p2p.Contact
-import harpo.network.communication.p2p.Node
+import harpo.network.p2p.Closest.Builder
+import harpo.network.p2p.Closest.newBuilder
+import harpo.network.p2p.Contact
+import harpo.network.p2p.Node
 import harpo.network.communication.p2p.domain.model.Closest
 
 class NodeToResourceAssembler {

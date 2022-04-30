@@ -9,7 +9,6 @@ import harpo.network.communication.p2p.view.P2PEndpoint
 import io.ep2p.kademlia.NodeSettings
 import io.ep2p.kademlia.node.KademliaNode
 import io.ep2p.kademlia.table.BigIntegerRoutingTable
-import io.ep2p.kademlia.table.RoutingTable
 import java.math.BigInteger
 
 class ProjectModules : AbstractModule() {
@@ -30,7 +29,8 @@ class P2PModules : AbstractModule() {
         // TODO get the configs in the properties file
         val nodeId = BigInteger("397c80bef1514077839a3a02d4bcf1a3", 16)
         val nodeSettings = NodeSettings()
-        return KademliaNode(nodeId, ConnectionInfoImpl("localhost", 8384),
+        return KademliaNode(
+            nodeId, ConnectionInfoImpl("localhost", 8384),
             BigIntegerRoutingTable(nodeId, NodeSettings()),
             KMessageSender(),
             nodeSettings
@@ -42,7 +42,7 @@ class P2PModules : AbstractModule() {
 
     override fun configure() {
         bind(KademliaNode::class.java).toInstance(selfNode())
-        //bind(SelfRepository::class.java).toInstance(SelfRepositoryKademliaAPI(selfNode()))
+        // bind(SelfRepository::class.java).toInstance(SelfRepositoryKademliaAPI(selfNode()))
     }
 }
 

@@ -14,6 +14,4 @@ interface Message {
         receiver: Node<BigInteger, ConnectionInfoImpl>?,
         message: KademliaMessage<BigInteger, ConnectionInfoImpl, OUTPUT>?
     ): KademliaMessage<BigInteger, ConnectionInfoImpl, INPUT>
-
 }
-

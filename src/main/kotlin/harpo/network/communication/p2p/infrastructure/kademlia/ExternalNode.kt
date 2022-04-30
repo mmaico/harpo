@@ -4,8 +4,7 @@ import io.ep2p.kademlia.node.Node
 import java.math.BigInteger
 import java.util.*
 
-class ExternalNode(private val _connectionInfo: ConnectionInfoImpl, private val _id: BigInteger, private var _lastSeen: Date?): Node<BigInteger, ConnectionInfoImpl> {
-
+class ExternalNode(private val _connectionInfo: ConnectionInfoImpl, private val _id: BigInteger, private var _lastSeen: Date?) : Node<BigInteger, ConnectionInfoImpl> {
 
     override fun getConnectionInfo(): ConnectionInfoImpl = _connectionInfo
 

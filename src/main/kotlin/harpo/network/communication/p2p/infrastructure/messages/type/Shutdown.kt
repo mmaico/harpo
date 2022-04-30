@@ -9,7 +9,7 @@ import io.ep2p.kademlia.protocol.message.KademliaMessage
 import java.io.Serializable
 import java.math.BigInteger
 
-class Shutdown(private val repository: OperationsRepository = OperationsRepository()): Message {
+class Shutdown(private val repository: OperationsRepository = OperationsRepository()) : Message {
     override fun <INPUT : Serializable?, OUTPUT : Serializable?> sendMessage(
         self: KademliaNodeAPI<BigInteger, ConnectionInfoImpl>?,
         receiver: Node<BigInteger, ConnectionInfoImpl>?,
@@ -18,8 +18,6 @@ class Shutdown(private val repository: OperationsRepository = OperationsReposito
 
         repository.shutdown(receiver, self)
 
-        return  EmptyKademliaMessage<BigInteger, ConnectionInfoImpl>() as KademliaMessage<BigInteger, ConnectionInfoImpl, INPUT>
+        return EmptyKademliaMessage<BigInteger, ConnectionInfoImpl>() as KademliaMessage<BigInteger, ConnectionInfoImpl, INPUT>
     }
-
-
 }

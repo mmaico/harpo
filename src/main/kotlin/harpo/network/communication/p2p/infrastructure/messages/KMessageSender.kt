@@ -9,7 +9,7 @@ import io.ep2p.kademlia.protocol.message.KademliaMessage
 import java.io.Serializable
 import java.math.BigInteger
 
-class KMessageSender: MessageSender<BigInteger, ConnectionInfoImpl> {
+class KMessageSender : MessageSender<BigInteger, ConnectionInfoImpl> {
 
     override fun <INPUT : Serializable?, OUTPUT : Serializable?> sendMessage(
         self: KademliaNodeAPI<BigInteger, ConnectionInfoImpl>?,
@@ -32,9 +32,7 @@ class KMessageSender: MessageSender<BigInteger, ConnectionInfoImpl> {
 
         val messageRegistered = MessageFactory.getMessageBy(type)
 
-        //messageRegistered?.sendMessage(self, receiver, message)
+        // messageRegistered?.sendMessage(self, receiver, message)
         TODO("No implemented yet")
     }
-
-
 }

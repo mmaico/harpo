@@ -2,16 +2,17 @@ package harpo.network.communication.p2p.view
 
 import com.google.inject.Singleton
 import com.google.protobuf.Empty
-import harpo.network.communication.p2p.Answer
-import harpo.network.communication.p2p.KademliaServiceGrpc
+
 import harpo.network.communication.p2p.domain.model.Closest
 import harpo.network.communication.p2p.domain.model.Contact
 import harpo.network.communication.p2p.domain.model.node.External
 import harpo.network.communication.p2p.domain.model.node.Self
 import harpo.network.communication.p2p.view.support.NodeToResourceAssembler.Companion.buildFrom
+import harpo.network.p2p.Answer
+import harpo.network.p2p.KademliaServiceGrpc
 import io.grpc.stub.StreamObserver
-import harpo.network.communication.p2p.Closest as ClosestResource
-import harpo.network.communication.p2p.Node as NodeResource
+import harpo.network.p2p.Closest as ClosestResource
+import harpo.network.p2p.Node as NodeResource
 
 /**
  * Class responsible for receive the network interaction and call the domain module

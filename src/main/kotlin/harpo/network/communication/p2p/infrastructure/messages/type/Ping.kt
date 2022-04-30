@@ -9,7 +9,7 @@ import io.ep2p.kademlia.protocol.message.PongKademliaMessage
 import java.io.Serializable
 import java.math.BigInteger
 
-class Ping(private val repository: OperationsRepository = OperationsRepository()): Message {
+class Ping(private val repository: OperationsRepository = OperationsRepository()) : Message {
 
     override fun <INPUT : Serializable?, OUTPUT : Serializable?> sendMessage(
         self: KademliaNodeAPI<BigInteger, ConnectionInfoImpl>?,
@@ -25,5 +25,4 @@ class Ping(private val repository: OperationsRepository = OperationsRepository()
 
         return response as KademliaMessage<BigInteger, ConnectionInfoImpl, INPUT>
     }
-
 }
