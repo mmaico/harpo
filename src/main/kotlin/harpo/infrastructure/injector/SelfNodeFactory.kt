@@ -15,7 +15,7 @@ class SelfNodeFactory {
          * Outside the test environment there will be only one self node.
          */
         private val nodes: MutableMap<BigInteger, KademliaNode<BigInteger, ConnectionInfoImpl>> = mutableMapOf()
-        fun create(nodeId: BigInteger, host: String, port: Int, settings: SelfNodeSettings = SelfNodeSettings.getDefault()): KademliaNode<BigInteger, ConnectionInfoImpl> {
+        fun create(nodeId: BigInteger, host: String = "localhost", port: Int = 9393, settings: SelfNodeSettings = SelfNodeSettings.getDefault()): KademliaNode<BigInteger, ConnectionInfoImpl> {
             if (nodes.containsKey(nodeId)) return nodes[nodeId]!!
 
             val nodeSettings = NodeSettings(
@@ -42,6 +42,4 @@ class SelfNodeFactory {
             return node
         }
     }
-
-
 }

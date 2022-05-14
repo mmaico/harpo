@@ -1,15 +1,18 @@
 package harpo.network.kserver.infrastructure.grpc.server
 
 import com.google.inject.Singleton
-import harpo.infrastructure.injector.ServiceLocator.Companion.getInjector
+import harpo.network.communication.p2p.domain.model.node.Self
 import harpo.network.communication.p2p.view.P2PEndpoint
 import io.grpc.ServerBuilder
+import java.math.BigInteger
 
 @Singleton
-class GRPCServer(private val port: Int = 9393, private var isRunning: Boolean = false) {
+class GRPCServer(id: BigInteger, private val port: Int = 9393, private var isRunning: Boolean = false) {
 
-    private val gRPCServer: io.grpc.Server = ServerBuilder.forPort(port)
-        .addService(getInjector().getInstance(P2PEndpoint::class.java)).build()
+    private val gRPCServer: io.grpc.Server = ServerBuilder
+        .forPort(port)
+        .addService(P2PEndpoint(Self(id)))
+        .build()
 
     fun start() {
         if (!isRunning) {

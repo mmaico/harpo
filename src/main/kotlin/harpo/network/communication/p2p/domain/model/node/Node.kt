@@ -1,10 +1,10 @@
 package harpo.network.communication.p2p.domain.model.node
 
-import harpo.infrastructure.injector.ServiceLocator
+import harpo.infrastructure.injector.SelfNodeFactory
 import harpo.network.communication.p2p.domain.model.Closest
 import harpo.network.communication.p2p.domain.model.Contact
+import harpo.network.communication.p2p.infrastructure.SelfRepositoryKademliaAPI
 import harpo.network.communication.p2p.infrastructure.kademlia.ConnectionInfoImpl
-import io.ep2p.kademlia.node.KademliaNode
 import java.math.BigInteger
 
 sealed class Node(val id: BigInteger, val distance: BigInteger, val lastSeen: Long, val contact: Contact)
@@ -26,11 +26,11 @@ class Self(
     fun findClosestTo(external: External): Closest = repository.findClosestTo(external)
 
     companion object {
-        operator fun invoke(): Self {
-            val instance = ServiceLocator.getInjector().getInstance(KademliaNode::class.java)
-            val repository = ServiceLocator.getInjector().getInstance(SelfRepository::class.java)
-            val connectionInfo = instance.connectionInfo as ConnectionInfoImpl
-            return Self(id = instance.id as BigInteger, contact = Contact(ip = connectionInfo.ip, port = connectionInfo.port), repository = repository)
+        operator fun invoke(id: BigInteger): Self {
+            val selfNode = SelfNodeFactory.create(id)
+            val repository = SelfRepositoryKademliaAPI(selfNode)
+            val connectionInfo = selfNode.connectionInfo as ConnectionInfoImpl
+            return Self(id = selfNode.id as BigInteger, contact = Contact(ip = connectionInfo.ip, port = connectionInfo.port), repository = repository)
         }
     }
 }
