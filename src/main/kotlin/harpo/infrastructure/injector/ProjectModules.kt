@@ -5,7 +5,6 @@ import harpo.criptography.ecdh.ECDHCipher
 import harpo.criptography.shamir.SecretSharing
 import harpo.network.communication.p2p.infrastructure.kademlia.ConnectionInfoImpl
 import harpo.network.communication.p2p.infrastructure.messages.KMessageSender
-import harpo.network.communication.p2p.view.P2PEndpoint
 import io.ep2p.kademlia.NodeSettings
 import io.ep2p.kademlia.node.KademliaNode
 import io.ep2p.kademlia.table.BigIntegerRoutingTable
@@ -37,8 +36,8 @@ class P2PModules : AbstractModule() {
         )
     }
 
-    @Provides @Singleton
-    fun p2pEndpoint() = P2PEndpoint()
+//    @Provides @Singleton
+//    fun p2pEndpoint() = P2PEndpoint()
 
     override fun configure() {
         bind(KademliaNode::class.java).toInstance(selfNode())

@@ -1,8 +1,6 @@
 package harpo.network.communication.p2p.view
 
-import com.google.inject.Singleton
 import com.google.protobuf.Empty
-
 import harpo.network.communication.p2p.domain.model.Closest
 import harpo.network.communication.p2p.domain.model.Contact
 import harpo.network.communication.p2p.domain.model.node.External
@@ -17,8 +15,8 @@ import harpo.network.p2p.Node as NodeResource
 /**
  * Class responsible for receive the network interaction and call the domain module
  */
-@Singleton
-class P2PEndpoint(private val self: Self = Self("")) : KademliaServiceGrpc.KademliaServiceImplBase() {
+// @Singleton
+class P2PEndpoint(private val self: Self) : KademliaServiceGrpc.KademliaServiceImplBase() {
 
     override fun shutdownSignal(nodeThatWillShutdown: NodeResource?, responseObserver: StreamObserver<Empty>?) {
         val external = External(
