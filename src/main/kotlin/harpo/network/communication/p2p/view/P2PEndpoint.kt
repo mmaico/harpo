@@ -18,7 +18,7 @@ import harpo.network.p2p.Node as NodeResource
  * Class responsible for receive the network interaction and call the domain module
  */
 @Singleton
-class P2PEndpoint(private val self: Self = Self()) : KademliaServiceGrpc.KademliaServiceImplBase() {
+class P2PEndpoint(private val self: Self = Self("")) : KademliaServiceGrpc.KademliaServiceImplBase() {
 
     override fun shutdownSignal(nodeThatWillShutdown: NodeResource?, responseObserver: StreamObserver<Empty>?) {
         val external = External(

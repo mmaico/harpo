@@ -10,8 +10,14 @@ import java.math.BigInteger
 class SelfNodeFactory {
 
     companion object {
-
+        /**
+         * This factory helps to manage several self node instances for multi-node simulation.
+         * Outside the test environment there will be only one self node.
+         */
+        private val nodes: MutableMap<BigInteger, KademliaNode<BigInteger, ConnectionInfoImpl>> = mutableMapOf()
         fun create(nodeId: BigInteger, host: String, port: Int, settings: SelfNodeSettings = SelfNodeSettings.getDefault()): KademliaNode<BigInteger, ConnectionInfoImpl> {
+            if (nodes.containsKey(nodeId)) return nodes[nodeId]!!
+
             val nodeSettings = NodeSettings(
                 settings.alpha,
                 settings.identifierSize,
@@ -26,12 +32,14 @@ class SelfNodeFactory {
                 settings.maximumStoreAndLookupTimeoutTimeUnit,
                 settings.enabledFirstStoreRequestForcePass
             )
-            return KademliaNode(
+            val node = KademliaNode(
                 nodeId, ConnectionInfoImpl(host, port),
                 BigIntegerRoutingTable(nodeId, nodeSettings),
                 KMessageSender(),
                 nodeSettings
             )
+            nodes[nodeId] = node
+            return node
         }
     }
 
