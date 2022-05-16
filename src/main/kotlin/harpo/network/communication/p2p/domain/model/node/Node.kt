@@ -23,7 +23,9 @@ class Self(
 
     fun receivedPingFrom(external: External): ImLive = repository.receivedPingFrom(external)
 
-    fun findClosestTo(external: External): Closest = repository.findClosestTo(external)
+    fun findClosestTo(external: External): Closest {
+        return repository.findClosestTo(external)
+    }
 
     companion object {
         operator fun invoke(id: BigInteger): Self {

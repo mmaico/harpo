@@ -38,6 +38,7 @@ class SelfNodeFactory {
                 KMessageSender(),
                 nodeSettings
             )
+            
             nodes[nodeId] = node
             return node
         }
